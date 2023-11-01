@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService{
@@ -25,16 +26,16 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService{
     public AvaliacaoFisica create(AvaliacaoFisicaDto avaliacaoDto) throws Exception {
 
         // Verificar se o aluno existe
-        Aluno aluno = alunoRepository.findById(avaliacaoDto.getIdAluno()).get();
+        Optional<Aluno> aluno = alunoRepository.findById(avaliacaoDto.getIdAluno());
 
         // Se não existir,
-        if(aluno == null) {
+        if(!aluno.isPresent()) {
             throw new Exception("Aluno não encontrado");
         }
 
 
         AvaliacaoFisica avaliacaoFisica = new AvaliacaoFisica();
-        avaliacaoFisica.setAluno(aluno);
+        avaliacaoFisica.setAluno(aluno.get());
         avaliacaoFisica.setPeso(avaliacaoDto.getPeso());
         avaliacaoFisica.setAltura(avaliacaoDto.getAltura());
 

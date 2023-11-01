@@ -1,11 +1,18 @@
 package me.daniel.academia.academiadigital.dto.avaliacaoFisica;
 
-public class AvaliacaoFisicaDto {
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
+public class AvaliacaoFisicaDto {
+    @NotNull(message = "Preencha o campo corretamente.")
+    @Positive(message = "O campo peso precisa ser positivo.")
     private double peso;
 
-    private double altura;
 
+    @Positive(message = "O campo altura precisa ser positivo.")
+    @NotNull(message = "Preencha o campo corretamente.")
+    private double altura;
+    @Positive(message = "O Id do aluno precisa ser positivo.")
     private int idAluno;
 
     public AvaliacaoFisicaDto( double peso, double altura, int idAluno) {

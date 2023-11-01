@@ -1,5 +1,6 @@
 package me.daniel.academia.academiadigital.Controller.avaliacaoFisica;
 
+import jakarta.validation.Valid;
 import me.daniel.academia.academiadigital.dto.avaliacaoFisica.AvaliacaoFisicaDto;
 import me.daniel.academia.academiadigital.model.AvaliacaoFisica;
 import me.daniel.academia.academiadigital.service.avalicaoFisica.AvaliacaoFisicaServiceImpl;
@@ -19,7 +20,7 @@ public class AvaliacaoFisicaController {
     private AvaliacaoFisicaServiceImpl avaliacaoFisicaService;
 
     @PostMapping
-    public ResponseEntity<AvaliacaoFisica> create(@RequestBody AvaliacaoFisicaDto avaliacaoFisicaDto) throws Exception {
+    public ResponseEntity<AvaliacaoFisica> create(@Valid @RequestBody AvaliacaoFisicaDto avaliacaoFisicaDto) throws Exception {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoFisicaService.create(avaliacaoFisicaDto));
     }
