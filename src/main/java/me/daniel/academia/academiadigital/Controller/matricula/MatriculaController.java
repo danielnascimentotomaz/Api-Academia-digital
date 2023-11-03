@@ -27,7 +27,14 @@ public class MatriculaController {
 
     @GetMapping
     public ResponseEntity<List<Matricula>> getAll() {
+
         return ResponseEntity.ok(matriculaService.getAll());
+    }
+
+
+    @GetMapping("/{bairro}")
+    public ResponseEntity<List<Matricula> >getById(@PathVariable String  bairro) {
+        return ResponseEntity.status(HttpStatus.OK).body(matriculaService.getAllAlunoByBairro(bairro));
     }
 
 

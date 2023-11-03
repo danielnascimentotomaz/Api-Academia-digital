@@ -14,6 +14,8 @@ public interface IAlunoService {
 
     List<AvaliacaoFisica> getAllAvaliacaoFisica(Long id);
 
+    List<Aluno> getAllAlunosByDataDeNascimento(String dataDeNascimento);
+
 
 
 

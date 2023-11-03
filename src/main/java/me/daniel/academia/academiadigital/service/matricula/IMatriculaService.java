@@ -11,5 +11,7 @@ public interface IMatriculaService {
 
     List<Matricula> getAll();
 
+    List<Matricula> getAllAlunoByBairro(String bairro);
+
 
 }

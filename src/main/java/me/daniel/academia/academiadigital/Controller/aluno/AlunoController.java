@@ -41,5 +41,14 @@ public class AlunoController {
 
     }
 
+    @GetMapping("/{dataNascimento}")
+    public ResponseEntity<List<Aluno>> getAlunosByDataNascimento(@PathVariable String dataNascimento) {
+
+      List<Aluno> alunos = alunoService.getAllAlunosByDataDeNascimento(dataNascimento);
+
+      return ResponseEntity.status(HttpStatus.OK).body(alunos);
+
+    }
+
 
 }

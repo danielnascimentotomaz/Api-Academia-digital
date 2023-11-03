@@ -53,4 +53,15 @@ public class MatriculaServiceImpl implements IMatriculaService{
     public List<Matricula> getAll() {
         return matriculaRepository.findAll();
     }
+
+    @Override
+    public List<Matricula> getAllAlunoByBairro(String bairro) {
+        List<Matricula> matriculas = matriculaRepository.findByAlunoBairro(bairro);
+        if(matriculas.isEmpty()){
+            throw new RuntimeException("Não existe matriculas para este bairro");
+        }
+
+        return matriculas;
+
+    }
 }

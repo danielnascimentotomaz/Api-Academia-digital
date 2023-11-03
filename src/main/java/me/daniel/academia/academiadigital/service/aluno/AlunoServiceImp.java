@@ -1,6 +1,7 @@
 package me.daniel.academia.academiadigital.service.aluno;
 
 import me.daniel.academia.academiadigital.dto.aluno.AlunoDto;
+import me.daniel.academia.academiadigital.infra.JavaTimeUtils;
 import me.daniel.academia.academiadigital.model.Aluno;
 import me.daniel.academia.academiadigital.model.AvaliacaoFisica;
 import me.daniel.academia.academiadigital.repository.AlunoRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +47,23 @@ public class AlunoServiceImp implements IAlunoService
         }
 
         return aluno.get().getAvaliacoes();
+
+    }
+
+    @Override
+    public List<Aluno> getAllAlunosByDataDeNascimento(String dataDeNascimento) {
+
+        LocalDate data = LocalDate.parse(dataDeNascimento, JavaTimeUtils.LOCAL_DATE_FORMATTER);
+
+        List<Aluno> alunos = alunoRepository.findByDataDeNascimento(data);
+
+        if (alunos.isEmpty()) {
+            throw new RuntimeException("Nao Existe Nenhum Aluno Cadastrado com essa Data");
+        }
+
+
+        return alunos;
+
 
     }
 
